@@ -1,0 +1,5 @@
+name: CrateAddon
+author: AlphaHelix
+version: 1.0
+description: Adds in crates, which contains kits
+main: de.alphahelix.crateaddon.CrateAddon
