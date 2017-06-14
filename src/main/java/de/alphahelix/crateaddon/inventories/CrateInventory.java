@@ -55,15 +55,17 @@ public class CrateInventory {
             ib.addItem(new InventoryBuilder.SimpleItem(c.getIcon(), i) {
                 @Override
                 public void onClick(InventoryClickEvent e) {
-                    Player p = (Player) e.getWhoClicked();
+                    if (e.getClickedInventory().getTitle().equals(CrateAddon.getCrateOptions().getGUIName())) {
+                        Player p = (Player) e.getWhoClicked();
 
-                    e.setCancelled(true);
+                        e.setCancelled(true);
 
-                    if (!stats.hasCustomStatistic(c)) return;
-                    p.closeInventory();
-                    p.playSound(p.getLocation(), Sounds.NOTE_PLING.bukkitSound(), 10, 1);
+                        if (!stats.hasCustomStatistic(c)) return;
+                        p.closeInventory();
+                        p.playSound(p.getLocation(), Sounds.NOTE_PLING.bukkitSound(), 10, 1);
 
-                    CrateAddon.getCrateOpenInventory().openInventory(c, p);
+                        CrateAddon.getCrateOpenInventory().openInventory(c, p);
+                    }
                 }
             });
         }

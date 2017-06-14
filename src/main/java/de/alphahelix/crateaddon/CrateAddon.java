@@ -1,5 +1,6 @@
 package de.alphahelix.crateaddon;
 
+import de.alphahelix.alphalibary.utils.Util;
 import de.alphahelix.crateaddon.commands.CrateCommand;
 import de.alphahelix.crateaddon.files.CrateFile;
 import de.alphahelix.crateaddon.files.MessageFile;
@@ -10,7 +11,6 @@ import de.alphahelix.crateaddon.inventories.CrateInventory;
 import de.alphahelix.crateaddon.inventories.CrateOpenInventory;
 import de.alphahelix.crateaddon.listerners.DeathListener;
 import de.alphahelix.uhcremastered.UHC;
-import de.alphahelix.uhcremastered.addons.AddonCore;
 import de.alphahelix.uhcremastered.addons.core.Addon;
 import de.alphahelix.uhcremastered.enums.GState;
 import de.alphahelix.uhcremastered.utils.StatsUtil;
@@ -22,7 +22,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
 
 public class CrateAddon extends Addon {
 
@@ -83,12 +82,11 @@ public class CrateAddon extends Addon {
             @EventHandler
             public void onJoin(PlayerJoinEvent e) {
                 if (GState.is(GState.LOBBY))
-                    e.getPlayer().getInventory().setItem(getCrateOptions().getIcon().getSlot(), getCrateOptions().getIcon().getItemStack());
+                    Util.runLater(5, false, () ->
+                            e.getPlayer().getInventory().setItem(getCrateOptions().getIcon().getSlot(), getCrateOptions().getIcon().getItemStack()));
             }
         }, UHC.getInstance());
 
         new DeathListener();
-
-        AddonCore.getLogger().log(Level.INFO, "Crates - loaded");
     }
 }
