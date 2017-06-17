@@ -67,11 +67,11 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>de.alphahelix</groupId>
-            <artifactId>alphalibary</artifactId>
-            <version>1.7.2.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>de.alphahelix</groupId>-->
+            <!--<artifactId>alphalibary</artifactId>-->
+            <!--<version>1.7.2.2</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>

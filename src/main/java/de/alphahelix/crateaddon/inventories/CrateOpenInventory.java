@@ -4,6 +4,7 @@ import de.alphahelix.alphalibary.item.ItemBuilder;
 import de.alphahelix.alphalibary.kits.Kit;
 import de.alphahelix.alphalibary.listener.SimpleListener;
 import de.alphahelix.alphalibary.utils.Sounds;
+import de.alphahelix.alphalibary.utils.Util;
 import de.alphahelix.crateaddon.CrateAddon;
 import de.alphahelix.crateaddon.instances.Crate;
 import de.alphahelix.uhcremastered.UHC;
@@ -40,7 +41,7 @@ public class CrateOpenInventory extends SimpleListener {
     }
 
     @SuppressWarnings("deprecation")
-    public void openInventory(Crate c, Player p) {
+    void openInventory(Crate c, Player p) {
         if (THREADS.containsKey(p.getName())) {
             THREADS.get(p.getName()).stop();
         }
@@ -126,7 +127,7 @@ public class CrateOpenInventory extends SimpleListener {
                     Kit kit = null;
 
                     for (Kit k : c.getRewards()) {
-                        if (isSame(won, k.getIcon())) kit = k;
+                        if (Util.isSame(won, k.getIcon())) kit = k;
                     }
 
                     if (kit != null)
@@ -152,16 +153,5 @@ public class CrateOpenInventory extends SimpleListener {
     private boolean hasDisplayName(ItemStack itemStack) {
         return (itemStack != null && itemStack.hasItemMeta()
                 && itemStack.getItemMeta().hasDisplayName());
-    }
-
-    private boolean isSame(ItemStack a, ItemStack b) {
-        return (a.getType() == b.getType()) &&
-                (a.getAmount() == b.getAmount()) &&
-                (a.getDurability() == b.getDurability()) &&
-                (a.hasItemMeta() == b.hasItemMeta()) &&
-                (a.hasItemMeta() && a.getItemMeta().hasDisplayName() == b.getItemMeta().hasDisplayName()) &&
-                (a.hasItemMeta() && a.getItemMeta().getDisplayName().equals(b.getItemMeta().getDisplayName())) &&
-                (a.hasItemMeta() && a.getItemMeta().hasLore() == b.getItemMeta().hasLore()) &&
-                (a.hasItemMeta() && a.getItemMeta().getLore().equals(b.getItemMeta().getLore()));
     }
 }
